@@ -1,6 +1,7 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
+LAS = 26 # Laser Pin
 DIR = 20   # Direction GPIO Pin
 STEP = 21  # Step GPIO Pin
 SLP = 16   #Sleep GPIO Pin
@@ -13,6 +14,7 @@ delay = .001
 
 #Setting up GPIO Outputs
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(LAS,GPIO.OUT)
 GPIO.setup(DIR, GPIO.OUT)
 GPIO.setup(STEP, GPIO.OUT)
 GPIO.setup(SLP, GPIO.OUT)
@@ -30,9 +32,14 @@ def stepperdrive(count,direction):
         if (x == count):
             print(x)
 
+def lasercycle(time):
+    GPIO.output(LAS,GPIO.HIGH)
+    sleep(time)
+    GPIO.output(LAS,GPIO.LOW)
+
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
-print("o-On s-Stop e-Extrude r-Retract x-Exit")
+print("o-On s-Stop e-Extrude r-Retract l-Laser Cycle x-Exit")
 print("\n")
 
 GPIO.output(SLP, GPIO.LOW) # Turn off Stepper to Start
@@ -59,6 +66,11 @@ while(1):
     elif x=='r':
         print("Retract")
         stepperdrive(800,"CCW")
+        x='z'
+
+    elif x=='l':
+        print("Laser Cycle")
+        lasercycle(2000)
         x='z'
     
     elif x=='x':
