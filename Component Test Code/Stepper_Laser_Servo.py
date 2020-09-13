@@ -3,9 +3,11 @@ import RPi.GPIO as GPIO
 
 SERV = 6 # Servo
 LAS = 26 # Laser Pin
-DIR = 20   # Direction GPIO Pin
-STEP = 21  # Step GPIO Pin
-SLP = 16   #Sleep GPIO Pin
+DIR = 20   # Direction GPIO Pin (Brown Brown)
+STEP = 21  # Step GPIO Pin (Purple Yellow)
+SLP = 16   #Sleep GPIO Pin (Grey Green)
+#GND (Blue Purple)
+#VCC (Green Blue)
 CW = 1     # Clockwise Rotation
 CCW = 0    # Counterclockwise Rotation
 SPR = 200   # Steps per Revolution (360 / 1.8)
