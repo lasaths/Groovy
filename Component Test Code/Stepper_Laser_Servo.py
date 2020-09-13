@@ -23,7 +23,7 @@ GPIO.setup(STEP, GPIO.OUT)
 GPIO.setup(SLP, GPIO.OUT)
 GPIO.setup(SERV,GPIO.OUT)
 
-servo = GPIO.PWN(SERV,50)
+servo = GPIO.PWM(SERV,50)
 
 def stepperdrive(count,direction):
     if direction == "CW":
