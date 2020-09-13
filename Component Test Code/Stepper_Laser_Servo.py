@@ -1,7 +1,7 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
-SERV = 6 # Servo
+SERV = 12 # Servo
 LAS = 26 # Laser Pin
 DIR = 20   # Direction GPIO Pin (Brown Brown)
 STEP = 21  # Step GPIO Pin (Purple Yellow)
