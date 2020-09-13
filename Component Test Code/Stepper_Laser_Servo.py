@@ -76,19 +76,19 @@ while(1):
 
     elif x=='l':
         print("Laser Cycle")
-        lasercycle(2000)
+        lasercycle(2)
         x='z'
 
     elif x=='f':
         print("Forward")
         servo.start(2.5)
-        p.ChangeDutyCycle(7.5)
+        servo.ChangeDutyCycle(7.5)
         x='z'
 
     elif x=='h':
         print("Halt")
         servo.start(2.5)
-        p.ChangeDutyCycle(7.5)
+        servo.ChangeDutyCycle(7.5)
         x='z'
     
     elif x=='x':
