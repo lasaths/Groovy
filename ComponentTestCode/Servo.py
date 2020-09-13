@@ -9,7 +9,7 @@ while True:
         x = input();
         if x=='x':
             GPIO.output(SLP, GPIO.LOW) #No Cleanup GPIO as it makes Stepper go undefined and start turning
-                break
+            break
         else:
                 p.ChangeDutyCycle(int(x))
                 print("Speed is " + x)
