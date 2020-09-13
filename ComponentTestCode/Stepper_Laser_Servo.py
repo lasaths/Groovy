@@ -89,8 +89,8 @@ while(1):
         servo.ChangeDutyCycle(7)
         x='z'
 
-        elif x=='b':
-            print("Backward")
+    elif x=='b':
+        print("Backward")
         servo.ChangeDutyCycle(5)
         x='z'
     
