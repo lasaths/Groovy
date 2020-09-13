@@ -81,13 +81,12 @@ while(1):
 
     elif x=='f':
         print("Forward")
-        servo.start(2.5)
-        servo.ChangeDutyCycle(7.5)
+        servo.start(7.5)
+        servo.ChangeDutyCycle(12)
         x='z'
 
     elif x=='h':
         print("Halt")
-        servo.start(2.5)
         servo.ChangeDutyCycle(7.5)
         x='z'
     
