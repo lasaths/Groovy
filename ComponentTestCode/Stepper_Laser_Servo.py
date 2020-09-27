@@ -1,11 +1,13 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
-SERV = 6 # Servo
+SERV = 12 # Servo
 LAS = 26 # Laser Pin
-DIR = 20   # Direction GPIO Pin
-STEP = 21  # Step GPIO Pin
-SLP = 16   #Sleep GPIO Pin
+DIR = 20   # Direction GPIO Pin (Brown Brown)
+STEP = 21  # Step GPIO Pin (Purple Yellow)
+SLP = 16   #Sleep GPIO Pin (Grey Green)
+#GND (Blue Purple)
+#VCC (Green Blue)
 CW = 1     # Clockwise Rotation
 CCW = 0    # Counterclockwise Rotation
 SPR = 200   # Steps per Revolution (360 / 1.8)
@@ -22,7 +24,7 @@ GPIO.setup(STEP, GPIO.OUT)
 GPIO.setup(SLP, GPIO.OUT)
 GPIO.setup(SERV,GPIO.OUT)
 
-servo = GPIO.PWN(SERV,50)
+servo = GPIO.PWM(SERV,50)
 
 def stepperdrive(count,direction):
     if direction == "CW":
@@ -44,7 +46,7 @@ def lasercycle(time):
 
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
-print("o-On f - Forward h - Halt s-Stop e-Extrude r-Retract l-Laser Cycle x-Exit")
+print("o-On f - Forward b - Backward h - Halt s-Stop e-Extrude r-Retract l-Laser Cycle x-Exit")
 print("\n")
 
 GPIO.output(SLP, GPIO.LOW) # Turn off Stepper to Start
@@ -83,23 +85,27 @@ while(1):
 
     elif x=='l':
         print("Laser Cycle")
-        lasercycle(2000)
+        lasercycle(2)
         x='z'
 
     elif x=='f':
         print("Forward")
-        servo.start(2.5)
-        p.ChangeDutyCycle(7.5)
+        servo.start(10)
         x='z'
 
     elif x=='h':
         print("Halt")
-        servo.start(2.5)
-        p.ChangeDutyCycle(7.5)
+        servo.ChangeDutyCycle(7)
+        x='z'
+
+    elif x=='b':
+        print("Backward")
+        servo.ChangeDutyCycle(5)
         x='z'
     
     elif x=='x':
         GPIO.output(SLP, GPIO.LOW) #No Cleanup GPIO as it makes Stepper go undefined and start turning
+        GPIO.cleanup()
         break
     
     else:
