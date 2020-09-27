@@ -11,6 +11,7 @@ CCW = 0    # Counterclockwise Rotation
 SPR = 200   # Steps per Revolution (360 / 1.8)
 step_count = SPR
 delay = .001
+extrudecount = 0;
 
 
 #Setting up GPIO Outputs
@@ -63,14 +64,22 @@ while(1):
         x='z'
 
     elif x=='e':
-        print("Extrude")
-        stepperdrive(800,"CW")
-        x='z'
+        if extrudecount < 5:
+            print("Extrude")
+            stepperdrive(400,"CW")
+            extrudecount += 1
+            x='z'
+        else:
+            print("Extrude Limit Reached (5)")
 
     elif x=='r':
-        print("Retract")
-        stepperdrive(800,"CCW")
-        x='z'
+        if extrudecount > 0:
+            print("Retract")
+            stepperdrive(400,"CCW")
+            extrudecount -= 1
+            x='z'
+        else:
+            print("Retract Limit Reached (0)")
 
     elif x=='l':
         print("Laser Cycle")
