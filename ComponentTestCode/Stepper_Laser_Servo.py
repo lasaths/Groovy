@@ -46,7 +46,7 @@ def lasercycle(time):
 
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
-print("o-On f - Forward b - Backward h - Halt s-Stop e-Extrude r-Retract l-Laser Cycle x-Exit")
+print("o-On d,f,g - Forward (slow,medium,fast) b - Backward h - Halt s-Stop e-Extrude r-Retract l-Laser Cycle x-Exit")
 print("\n")
 
 GPIO.output(SLP, GPIO.LOW) # Turn off Stepper to Start
@@ -89,8 +89,18 @@ while(1):
         x='z'
 
     elif x=='f':
-        print("Forward")
+        print("Forward Medium")
+        servo.start(9)
+        x='z'
+
+    elif x=='g':
+        print("Forward Fast")
         servo.start(10)
+        x='z'
+
+    elif x=='d':
+        print("Forward Slow")
+        servo.start(8)
         x='z'
 
     elif x=='h':
