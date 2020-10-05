@@ -1,8 +1,8 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
-SERV = 12 # Servo
-LAS = 26 # Laser Pin
+SERV = 1 # Servo
+LAS = 23# Laser Pin
 DIR = 20   # Direction GPIO Pin (Brown Brown)
 STEP = 21  # Step GPIO Pin (Purple Yellow)
 SLP = 16   #Sleep GPIO Pin (Grey Green)
@@ -102,15 +102,35 @@ while(1):
         print("Forward Slow")
         servo.start(8)
         x='z'
+        
+    elif x=='k':
+        print("Halt")
+        servo.ChangeDutyCycle(6.85)
+        print("Extruding")
+        sleep(5) #extruding
+        servo.ChangeDutyCycle(8) #move forward
+        sleep(2)
+        print("Halt")
+        servo.ChangeDutyCycle(6.85)
+        print("Laser Cycle")
+        lasercycle(4)
+        print("Forward Slow")
+        servo.ChangeDutyCycle(8)
+        x='z'
 
     elif x=='h':
         print("Halt")
-        servo.ChangeDutyCycle(7)
+        servo.ChangeDutyCycle(6.85)
         x='z'
 
     elif x=='b':
         print("Backward")
         servo.ChangeDutyCycle(5)
+        x='z'
+        
+    elif x=='v':
+        print("Backward Slow")
+        servo.ChangeDutyCycle(6)
         x='z'
     
     elif x=='x':
