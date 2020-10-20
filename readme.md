@@ -2,9 +2,9 @@
 
 Groovy is a Fibre laying robot powered by a Pi Zero. All the code relating to the project can be found here.
 
-#Installation 
+## Installation 
 
-###LipoShim
+### LipoShim
 ```bash
 curl https://get.pimoroni.com/zerolipo | bash
 ```
